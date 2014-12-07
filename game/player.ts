@@ -67,6 +67,8 @@ module LD31 {
 
             this.game.physics.arcade.collide(this.main.collectableResourcesGroup, this, this.collideWithResourceCallback, null, this);
 
+            this.game.physics.arcade.collide(this.main.arrowPickupGroup, this, this.collideWithPickup, null, this);
+
 
             this.body.velocity.x = 0;
             this.body.velocity.y = 0;
@@ -99,7 +101,7 @@ module LD31 {
 
                     arrow.rotation = this.rotation;
 
-                    arrow.lifespan = 2000;
+                    arrow.lifespan = 1000;
 
                     this.game.physics.arcade.velocityFromRotation(this.rotation, 200, arrow.body.velocity);
 
@@ -161,6 +163,17 @@ module LD31 {
 
             arrow.kill();
             snowman.kill();
+
+        }
+
+        collideWithPickup(player, pickup){
+
+            console.log("Collide with pickup");
+
+            pickup.kill();
+
+            this.arrowCount += 3;
+            this.main.updateArrowCount(this.arrowCount);
 
         }
 

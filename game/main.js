@@ -509,9 +509,6 @@ var LD31;
         Main.prototype.preload = function () {
         };
         Main.prototype.create = function () {
-            var d = new Date();
-            var n = d.getSeconds();
-            this.timelast = n;
             this.game.world.setBounds(0, 0, 790, 608);
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
             this.grassGroup = this.game.add.group();
@@ -522,6 +519,7 @@ var LD31;
             this.InitialisePlayer();
             //this.InitialiseSnowPersons();
             this.snowmanGroup = this.game.add.group();
+            this.arrowPickupGroup = this.game.add.group();
             this.InitialiseDashboard();
             this.initialiseAudio();
         };
@@ -584,13 +582,21 @@ var LD31;
             this.player = new LD31.Player(this.game, 300, 80, this);
         };
         Main.prototype.spawnSnowPersons = function () {
-            var x = Math.floor(Math.random() * this.game.width + 100);
-            var y = Math.floor(Math.random() * this.game.width + 1);
+            var x = Math.floor(Math.random() * this.game.width - 100);
+            var y = Math.floor(Math.random() * this.game.height + 1);
             var snowman = new LD31.Enemy(this.game, x, y, this.player, this);
             snowman.animations.play('walk');
-            //snowman.scale.x = 1.5;
-            //snowman.scale.y = 1.5;
             this.snowmanGroup.add(snowman);
+        };
+        Main.prototype.spawnArrowPickup = function () {
+            var x = Math.floor(Math.random() * this.game.width - 100);
+            var y = Math.floor(Math.random() * this.game.height + 1);
+            var arrowpickup = this.game.add.sprite(x, y, 'arrowpickup');
+            var min = 5000;
+            var bonus = Math.floor(Math.random() * 3000) + 1;
+            arrowpickup.lifespan = min + bonus;
+            this.game.physics.enable(arrowpickup);
+            this.arrowPickupGroup.add(arrowpickup);
         };
         Main.prototype.onClickCraftArrow = function (e) {
             this.craftArrows();
@@ -618,12 +624,23 @@ var LD31;
             }
         };
         Main.prototype.update = function () {
+            // Spawn enemy
             if (this.game.time.now > this.nextSpawn) {
                 this.nextSpawn = this.game.time.now + this.spawnRate;
-                // todo spawn a new snowman enemy
+                // Increment the difficulty but set a limit
+                if (this.spawnRate > 3000) {
+                    this.spawnRate -= 100;
+                }
                 console.log("new enemy spawned!");
                 this.spawnSnowPersons();
             }
+            // Spawn arrow pickup
+            if (this.game.time.now > this.nextSpawnPickupArrow) {
+                this.nextSpawnPickupArrow = this.game.time.now + this.spawnPickupArrowRate;
+                console.log("new pickup spawned!");
+                this.spawnArrowPickup();
+            }
+            // Check for dead
             if (this.playerHealthCount <= 0) {
                 this.theme.stop();
                 this.game.state.start('GameOver', true, false); // game over screen
@@ -664,7 +681,7 @@ var LD31;
                 this.playerHealthText.text = this.playerHealthCount.toString();
             }
         };
-        Main.Timetotal = 0;
+        Main.Timetotal = 0; // we want to reference this also in the game over screen
         return Main;
     })(Phaser.State);
     LD31.Main = Main;

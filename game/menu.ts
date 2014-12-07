@@ -14,7 +14,7 @@ module LD31 {
             this.game.load.image('tree', 'assets/tree.png');
             this.game.load.image('snow', 'assets/snow.png');
             this.game.load.image('arrow', 'assets/arrow.png');
-            this.game.load.image('arrowpickup', 'assets/arrowarrow.png')
+            this.game.load.image('arrowpickup', 'assets/arrowpickup.png')
             this.game.load.image('snowball', 'assets/snowball.png');
 
             this.game.load.audio('forage', 'audio/forage.wav');

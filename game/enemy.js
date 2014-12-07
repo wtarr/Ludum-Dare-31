@@ -51,7 +51,7 @@ var LD31;
                     var snowball = this.snowballGroup.getFirstExists(false);
                     snowball.reset(this.x, this.y);
                     snowball.lifespan = 2000;
-                    this.game.physics.arcade.moveToObject(snowball, this.playerref, 50);
+                    this.game.physics.arcade.moveToObject(snowball, this.playerref, 80);
                 }
             }
             //if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP)) {

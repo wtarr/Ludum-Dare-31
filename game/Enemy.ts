@@ -74,7 +74,7 @@ module LD31 {
 
                     snowball.lifespan = 2000;
 
-                    this.game.physics.arcade.moveToObject(snowball, this.playerref, 50);
+                    this.game.physics.arcade.moveToObject(snowball, this.playerref, 80);
 
                 }
             }

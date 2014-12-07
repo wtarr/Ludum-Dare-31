@@ -9,8 +9,6 @@
 module LD31 {
     export class LudumGame extends Phaser.Game {
 
-        timeTotal : number;
-
         constructor() {
             super({width: 870, height: 608, renderer: Phaser.AUTO, parent: 'content', state: null});
 

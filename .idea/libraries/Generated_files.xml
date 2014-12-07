@@ -3,18 +3,24 @@
     <properties>
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/game/menu.js" />
+        <item url="file://$PROJECT_DIR$/game/enemy.js" />
         <item url="file://$PROJECT_DIR$/game/game.js" />
         <item url="file://$PROJECT_DIR$/game/main.js" />
+        <item url="file://$PROJECT_DIR$/game/player.js" />
         <item url="file://$PROJECT_DIR$/game/gameover.js" />
-        <item url="file://$PROJECT_DIR$/game/app.js" />
+        <item url="file://$PROJECT_DIR$/game/applicationState.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/game/app.js" />
+      <root url="file://$PROJECT_DIR$/game/app.js" />
       <root url="file://$PROJECT_DIR$/game/menu.js" />
       <root url="file://$PROJECT_DIR$/game/game.js" />
+      <root url="file://$PROJECT_DIR$/game/enemy.js" />
       <root url="file://$PROJECT_DIR$/game/main.js" />
+      <root url="file://$PROJECT_DIR$/game/player.js" />
       <root url="file://$PROJECT_DIR$/game/gameover.js" />
-      <root url="file://$PROJECT_DIR$/game/app.js" />
+      <root url="file://$PROJECT_DIR$/game/applicationState.js" />
     </CLASSES>
     <SOURCES />
   </library>

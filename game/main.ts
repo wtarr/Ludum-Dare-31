@@ -60,7 +60,7 @@ module LD31 {
         arrowCountText:Phaser.Text;
 
         nextSpawn:number = 0;
-        spawnRate:number = 10000;
+        spawnRate:number = 8000;
 
 
         arrowPickupGroup:Phaser.Group;

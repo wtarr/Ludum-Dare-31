@@ -502,7 +502,7 @@ var LD31;
             this.stoneCount = 0;
             this.playerHealthCount = 100;
             this.nextSpawn = 0;
-            this.spawnRate = 10000;
+            this.spawnRate = 8000;
             this.nextSpawnPickupArrow = 0;
             this.spawnPickupArrowRate = 10000;
         }

@@ -503,24 +503,15 @@ var LD31;
             this.playerHealthCount = 100;
             this.nextSpawn = 0;
             this.spawnRate = 10000;
+            this.nextSpawnPickupArrow = 0;
+            this.spawnPickupArrowRate = 10000;
         }
         Main.prototype.preload = function () {
-            this.game.load.image('grass', 'assets/grass.png');
-            this.game.load.image('tree', 'assets/tree.png');
-            this.game.load.image('snow', 'assets/snow.png');
-            this.game.load.image('arrow', 'assets/arrow.png');
-            this.game.load.image('snowball', 'assets/snowball.png');
-            this.game.load.audio('forage', 'audio/forage.wav');
-            this.game.load.audio('theme', 'audio/theme.wav');
-            this.game.load.image('stone', 'assets/stone.png');
-            //this.game.load.image('player', 'assets/player.png');
-            this.game.load.spritesheet('player', 'assets/playerspritesheet.png', 20, 32);
-            this.game.load.spritesheet('snowman', 'assets/snowmanspritesheet.png', 20, 32);
-            this.game.load.image('inventory', 'assets/inventory.png');
-            this.game.load.spritesheet('button', 'assets/buildbtn.png', 64, 32);
-            //this.game.load.tilemap('map', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON);
         };
         Main.prototype.create = function () {
+            var d = new Date();
+            var n = d.getSeconds();
+            this.timelast = n;
             this.game.world.setBounds(0, 0, 790, 608);
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
             this.grassGroup = this.game.add.group();
@@ -536,10 +527,12 @@ var LD31;
         };
         Main.prototype.initialiseAudio = function () {
             this.forageAudio = this.game.add.audio('forage');
+            this.hitSound = this.game.add.audio('hit');
             this.theme = this.game.add.audio('theme', 1, true);
             this.theme.play();
         };
         Main.prototype.InitialiseDashboard = function () {
+            var _this = this;
             this.game.add.sprite(800, 0, 'inventory');
             this.game.add.sprite(800 + 2, 21, 'tree');
             this.game.add.sprite(800 + 38, 21, 'stone');
@@ -566,6 +559,25 @@ var LD31;
                 fill: "#ffffff",
                 align: "right"
             });
+            this.survivalText = this.game.add.text(this.game.width / 2 - 40, 10, "00:00:00", {
+                font: "20px Arial",
+                fill: "#ff0000",
+                align: "right"
+            });
+            this.timer = this.game.time.create(false);
+            this.timer.loop(1000, function () {
+                Main.Timetotal++;
+                var seconds = Main.Timetotal;
+                var h = Math.floor(seconds / 3600);
+                var m = Math.floor((seconds - (h * 3600)) / 60);
+                var s = seconds - (h * 3600) - (m * 60);
+                var hs, ms, ss;
+                hs = (h < 10) ? "0" + h.toString() : +h.toString();
+                ms = (m < 10) ? "0" + m.toString() : +m.toString();
+                ss = (s < 10) ? "0" + s.toString() : +s.toString();
+                _this.survivalText.text = hs + ":" + ms + ":" + ss;
+            }, this);
+            this.timer.start();
             this.craftArrowBtn = this.game.add.button(802, 120, 'button', this.onClickCraftArrow, this, 1, 0, 0);
         };
         Main.prototype.InitialisePlayer = function () {
@@ -609,7 +621,7 @@ var LD31;
             if (this.game.time.now > this.nextSpawn) {
                 this.nextSpawn = this.game.time.now + this.spawnRate;
                 // todo spawn a new snowman enemy
-                console.log("new enemy");
+                console.log("new enemy spawned!");
                 this.spawnSnowPersons();
             }
             if (this.playerHealthCount <= 0) {
@@ -636,6 +648,10 @@ var LD31;
             if (this.stoneCount >= 2 && this.woodCount >= 1) {
                 this.player.arrowCount++;
                 this.arrowCountText.text = this.player.arrowCount.toString();
+                this.stoneCount -= 2;
+                this.stoneText.text = this.stoneCount.toString();
+                this.woodCount--;
+                this.woodText.text = this.woodCount.toString();
             }
         };
         Main.prototype.playerTakeDamage = function () {
@@ -643,7 +659,12 @@ var LD31;
             this.playerHealthText.text = this.playerHealthCount.toString();
         };
         Main.prototype.playerIncereaseHealth = function () {
+            if (this.playerHealthCount < 100) {
+                this.playerHealthCount += 5;
+                this.playerHealthText.text = this.playerHealthCount.toString();
+            }
         };
+        Main.Timetotal = 0;
         return Main;
     })(Phaser.State);
     LD31.Main = Main;

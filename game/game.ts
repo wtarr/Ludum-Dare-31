@@ -1,9 +1,6 @@
 /**
  * Created by William on 06/12/2014.
  */
-/**
- * Created by William on 05/12/2014.
- */
 /// <reference path="../js/phaser.d.ts"/>
 /// <reference path="menu.ts"/>
 /// <reference path="main.ts"/>
@@ -11,6 +8,9 @@
 
 module LD31 {
     export class LudumGame extends Phaser.Game {
+
+        timeTotal : number;
+
         constructor() {
             super({width: 870, height: 608, renderer: Phaser.AUTO, parent: 'content', state: null});
 

@@ -93,6 +93,7 @@ var LD31;
                 _this.game.add.tween(temp).to({ x: 850, y: 10 }, 500, Phaser.Easing.Cubic.Out, true, 0, 0, false).onComplete.add(function () {
                     if (key === 'tree') {
                         _this.main.setWoodCount();
+                        _this.main.playerIncereaseHealth();
                     }
                     else if (key === 'stone') {
                         _this.main.setIncrementStoneCount();
@@ -103,6 +104,7 @@ var LD31;
             }, this);
         };
         Player.prototype.arrowHitSnowman = function (arrow, snowman) {
+            this.main.hitSound.play();
             console.log("arrow hit snowman");
             arrow.kill();
             snowman.kill();

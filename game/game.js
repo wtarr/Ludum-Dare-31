@@ -1,9 +1,6 @@
 /**
  * Created by William on 06/12/2014.
  */
-/**
- * Created by William on 05/12/2014.
- */
 /// <reference path="../js/phaser.d.ts"/>
 /// <reference path="menu.ts"/>
 /// <reference path="main.ts"/>

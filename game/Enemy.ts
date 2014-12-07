@@ -92,6 +92,7 @@ module LD31 {
 
         snowBallHitPlayer(player, snowball)
         {
+            this.main.hitSound.play();
 
             snowball.kill();
 

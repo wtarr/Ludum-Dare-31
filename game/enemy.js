@@ -63,6 +63,7 @@ var LD31;
             //}
         };
         Enemy.prototype.snowBallHitPlayer = function (player, snowball) {
+            this.main.hitSound.play();
             snowball.kill();
             this.main.playerTakeDamage();
             console.log("Player hit by snowball");

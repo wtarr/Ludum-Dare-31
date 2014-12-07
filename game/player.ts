@@ -137,6 +137,7 @@ module LD31 {
                     if (key === 'tree')
                     {
                         this.main.setWoodCount();
+                        this.main.playerIncereaseHealth();
 
 
                     }
@@ -155,6 +156,7 @@ module LD31 {
 
         arrowHitSnowman(arrow, snowman) {
 
+            this.main.hitSound.play();
             console.log("arrow hit snowman");
 
             arrow.kill();

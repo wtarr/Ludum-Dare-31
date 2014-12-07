@@ -10,14 +10,14 @@ module LD31 {
 
         game:Phaser.Game;
 
-        spriteSize: number = 32;
-        mapRows: number = 19;
-        mapCols: number = 25;
+        spriteSize:number = 32;
+        mapRows:number = 19;
+        mapCols:number = 25;
 
         //player: Phaser.Sprite;
 
 
-        itemMap : Array<number> = [
+        itemMap:Array<number> = [
             1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1,
             1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
@@ -39,65 +39,63 @@ module LD31 {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0];
 
 
-        grassGroup: Phaser.Group;
-        collectableResourcesGroup: Phaser.Group;
+        grassGroup:Phaser.Group;
+        collectableResourcesGroup:Phaser.Group;
 
 
-        snowmanGroup: Phaser.Group;
+        snowmanGroup:Phaser.Group;
 
 
-        craftArrowBtn : Phaser.Button;
+        craftArrowBtn:Phaser.Button;
 
         // Dashboard/Inventory
-        woodCount: number = 0;
-        woodText: Phaser.Text;
-        stoneCount: number = 0;
-        stoneText: Phaser.Text;
+        woodCount:number = 0;
+        woodText:Phaser.Text;
+        stoneCount:number = 0;
+        stoneText:Phaser.Text;
 
-        playerHealthCount: number = 100;
-        playerHealthText: Phaser.Text;
+        playerHealthCount:number = 100;
+        playerHealthText:Phaser.Text;
 
-        arrowCountText: Phaser.Text;
+        arrowCountText:Phaser.Text;
 
-        nextSpawn: number = 0;
-        spawnRate: number = 10000;
+        nextSpawn:number = 0;
+        spawnRate:number = 10000;
 
-        snowman : LD31.Enemy;
-        player : LD31.Player;
+
+        nextSpawnPickupArrow:number = 0;
+        spawnPickupArrowRate:number = 10000;
+
+        snowman:LD31.Enemy;
+        player:LD31.Player;
 
 
         /// SOUNDS
-        forageAudio : Phaser.Sound;
-        hitSound: Phaser.Sound;
-        theme: Phaser.Sound;
+        forageAudio:Phaser.Sound;
+        hitSound:Phaser.Sound;
+        theme:Phaser.Sound;
+
+        // Survival Timer
+        timer:Phaser.Timer;
+        public static Timetotal : number = 0;
+        timelast:any;
+        survivalText:Phaser.Text;
 
 
         preload() {
 
-            this.game.load.image('grass', 'assets/grass.png');
-            this.game.load.image('tree', 'assets/tree.png');
-            this.game.load.image('snow', 'assets/snow.png');
-            this.game.load.image('arrow', 'assets/arrow.png');
-            this.game.load.image('snowball', 'assets/snowball.png');
 
-            this.game.load.audio('forage', 'audio/forage.wav');
-            this.game.load.audio('theme', 'audio/theme.wav');
-
-
-            this.game.load.image('stone', 'assets/stone.png');
-            //this.game.load.image('player', 'assets/player.png');
-            this.game.load.spritesheet('player', 'assets/playerspritesheet.png', 20, 32);
-            this.game.load.spritesheet('snowman', 'assets/snowmanspritesheet.png', 20, 32);
-            this.game.load.image('inventory', 'assets/inventory.png');
-
-            this.game.load.spritesheet('button', 'assets/buildbtn.png', 64, 32);
-            //this.game.load.tilemap('map', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON);
         }
 
         create() {
 
-           this.game.world.setBounds(0, 0, 790, 608);
-           this.game.physics.startSystem(Phaser.Physics.ARCADE);
+            var d = new Date();
+            var n = d.getSeconds();
+
+            this.timelast = n;
+
+            this.game.world.setBounds(0, 0, 790, 608);
+            this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
             this.grassGroup = this.game.add.group();
             this.collectableResourcesGroup = this.game.add.group();
@@ -114,11 +112,12 @@ module LD31 {
 
             this.initialiseAudio();
 
+
         }
 
-       private initialiseAudio()
-        {
+        private initialiseAudio() {
             this.forageAudio = this.game.add.audio('forage');
+            this.hitSound = this.game.add.audio('hit');
             this.theme = this.game.add.audio('theme', 1, true);
             this.theme.play();
         }
@@ -156,6 +155,33 @@ module LD31 {
                 align: "right"
             });
 
+            this.survivalText = this.game.add.text(this.game.width/2 - 40, 10, "00:00:00", {
+                font: "20px Arial",
+                fill: "#ff0000",
+                align: "right"
+            });
+
+            this.timer = this.game.time.create(false);
+            this.timer.loop(1000, () => {
+                Main.Timetotal++;
+
+                var seconds = Main.Timetotal;
+
+                var h = Math.floor(seconds / 3600);
+                var m = Math.floor((seconds - (h *3600)) / 60);
+                var s = seconds - (h * 3600) - (m * 60);
+
+                var hs, ms, ss;
+
+                hs = (h < 10) ? "0" + h.toString() : + h.toString();
+                ms = (m < 10) ? "0" + m.toString() : + m.toString();
+                ss = (s < 10) ? "0" + s.toString() : + s.toString();
+
+                this.survivalText.text = hs + ":" + ms + ":" + ss;
+
+            }, this);
+            this.timer.start();
+
             this.craftArrowBtn = this.game.add.button(802, 120, 'button', this.onClickCraftArrow, this, 1, 0, 0);
         }
 
@@ -166,23 +192,21 @@ module LD31 {
 
         private spawnSnowPersons() {
 
-            var x = Math.floor( Math.random() * this.game.width + 100 );
-            var y = Math.floor( Math.random() * this.game.width + 1 );
+            var x = Math.floor(Math.random() * this.game.width + 100);
+            var y = Math.floor(Math.random() * this.game.width + 1);
 
 
+            var snowman = new LD31.Enemy(this.game, x, y, this.player, this);
+            snowman.animations.play('walk');
+            //snowman.scale.x = 1.5;
+            //snowman.scale.y = 1.5;
 
-           var snowman = new LD31.Enemy(this.game, x, y, this.player, this);
-           snowman.animations.play('walk');
-           //snowman.scale.x = 1.5;
-           //snowman.scale.y = 1.5;
 
-
-           this.snowmanGroup.add(snowman);
+            this.snowmanGroup.add(snowman);
 
         }
 
-        private onClickCraftArrow(e)
-        {
+        private onClickCraftArrow(e) {
             this.craftArrows();
         }
 
@@ -200,14 +224,13 @@ module LD31 {
                         temp.body.immovable = true;
                         temp.name = "" + (x * this.spriteSize) + ":" + (y * this.spriteSize) + ":" + index;
                     }
-                    else if (key == 2)
-                    {
+                    else if (key == 2) {
                         var temp = this.collectableResourcesGroup.create(x * this.spriteSize, y * this.spriteSize, 'stone');
                         temp.body.immovable = true;
                         temp.name = "" + (x * this.spriteSize) + ":" + (y * this.spriteSize) + ":" + index;
                     }
 
-                    index ++;
+                    index++;
                 }
                 row += this.mapCols;
             }
@@ -216,19 +239,17 @@ module LD31 {
 
 
         update() {
-            if (this.game.time.now > this.nextSpawn)
-            {
+            if (this.game.time.now > this.nextSpawn) {
                 this.nextSpawn = this.game.time.now + this.spawnRate;
 
                 // todo spawn a new snowman enemy
 
-                console.log("new enemy");
+                console.log("new enemy spawned!");
 
                 this.spawnSnowPersons();
             }
 
-            if (this.playerHealthCount <= 0)
-            {
+            if (this.playerHealthCount <= 0) {
                 this.theme.stop();
                 this.game.state.start('GameOver', true, false); // game over screen
             }
@@ -239,42 +260,47 @@ module LD31 {
             //this.game.debug.spriteInfo(this.player, 32, 32);
         }
 
-        setWoodCount(){
+        setWoodCount() {
             this.woodCount++;
             this.woodText.text = this.woodCount.toString();
         }
 
-        updateArrowCount(newcount: number) {
+        updateArrowCount(newcount:number) {
             this.arrowCountText.text = newcount.toString();
         }
 
-        setIncrementStoneCount(){
+        setIncrementStoneCount() {
             this.stoneCount++;
             this.stoneText.text = this.stoneCount.toString();
         }
 
         craftArrows() {
 
-            if (this.stoneCount >= 2 && this.woodCount >= 1)
-            {
+            if (this.stoneCount >= 2 && this.woodCount >= 1) {
                 this.player.arrowCount++;
                 this.arrowCountText.text = this.player.arrowCount.toString();
+
+                this.stoneCount -= 2;
+                this.stoneText.text = this.stoneCount.toString();
+
+                this.woodCount--;
+                this.woodText.text = this.woodCount.toString();
+
             }
 
         }
 
-        playerTakeDamage(){
+        playerTakeDamage() {
             this.playerHealthCount -= 10;
             this.playerHealthText.text = this.playerHealthCount.toString();
         }
 
-        playerIncereaseHealth(){
-
+        playerIncereaseHealth() {
+            if (this.playerHealthCount < 100) {
+                this.playerHealthCount += 5;
+                this.playerHealthText.text = this.playerHealthCount.toString();
+            }
         }
-
-
-
-
 
 
     }

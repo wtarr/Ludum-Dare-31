@@ -21,7 +21,7 @@ module LD31 {
         }
 
         render() {
-            this.game.debug.text("Hello()", 0, 80);
+            this.game.debug.text("Game over", 0, 80);
         }
 
 

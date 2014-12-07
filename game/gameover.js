@@ -22,7 +22,7 @@ var LD31;
         GameOver.prototype.update = function () {
         };
         GameOver.prototype.render = function () {
-            this.game.debug.text("Hello()", 0, 80);
+            this.game.debug.text("Game over", 0, 80);
         };
         return GameOver;
     })(Phaser.State);

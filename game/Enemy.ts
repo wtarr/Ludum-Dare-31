@@ -59,18 +59,8 @@ module LD31 {
             this.body.velocity.y = 0;
             this.body.angularVelocity = 0;
 
-
-
-            if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-                this.body.angularVelocity = -200;
-            }
-            else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-                this.body.angularVelocity = 200;
-            }
-
-
             if (this.game.physics.arcade.distanceBetween(this, this.playerref) > 100) {
-                this.rotation = this.game.physics.arcade.moveToObject(this, this.playerref, 50);
+                this.rotation = this.game.physics.arcade.moveToObject(this, this.playerref, 30);
             }
             else
             {
@@ -81,6 +71,8 @@ module LD31 {
                     var snowball = this.snowballGroup.getFirstExists(false);
 
                     snowball.reset(this.x, this.y);
+
+                    snowball.lifespan = 2000;
 
                     this.game.physics.arcade.moveToObject(snowball, this.playerref, 50);
 
@@ -98,8 +90,12 @@ module LD31 {
 
         }
 
-        snowBallHitPlayer(me, other)
+        snowBallHitPlayer(player, snowball)
         {
+
+            snowball.kill();
+
+            this.main.playerTakeDamage();
 
             console.log("Player hit by snowball");
         }

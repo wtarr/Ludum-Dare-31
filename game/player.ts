@@ -55,15 +55,18 @@ module LD31 {
             this.arrowGroup.createMultiple(20, 'arrow', 0, false);
             this.arrowGroup.setAll('anchor.x', 0.5);
             this.arrowGroup.setAll('anchor.y', 0.5);
+            this.arrowGroup.setAll('scale.x', 1);
+            this.arrowGroup.setAll('scale.y', 1);
             this.arrowGroup.setAll('outOfBoundsKill', true);
             this.arrowGroup.setAll('checkWorldBounds', true);
         }
 
         update() {
 
+            this.game.physics.arcade.collide(this.main.snowmanGroup, this.arrowGroup, this.arrowHitSnowman, null, this);
+
             this.game.physics.arcade.collide(this.main.collectableResourcesGroup, this, this.collideWithResourceCallback, null, this);
 
-            this.game.physics.arcade.collide(this.main.snowmanGroup, this.arrowGroup, this.arrowHitSnowman, null, this);
 
             this.body.velocity.x = 0;
             this.body.velocity.y = 0;
@@ -96,6 +99,8 @@ module LD31 {
 
                     arrow.rotation = this.rotation;
 
+                    arrow.lifespan = 2000;
+
                     this.game.physics.arcade.velocityFromRotation(this.rotation, 200, arrow.body.velocity);
 
                     this.arrowCount--;
@@ -104,10 +109,14 @@ module LD31 {
             }
         }
 
+        render(){
+
+        }
 
         private collideWithResourceCallback(one, other) {
 
             this.playerCanMove = false;
+            this.main.forageAudio.play();
 
             var key = other.key;
             other.kill();
@@ -119,7 +128,7 @@ module LD31 {
 
             this.main.itemMap[parseInt(item[2])] = 0;
 
-            console.log("hit!!")
+            console.log("Collecting resource");
 
             this.game.add.tween(temp.scale).to({x: 1.1, y: 1.1}, 2000, Phaser.Easing.Bounce.InOut, true).onComplete.add(() => {
 
@@ -132,7 +141,7 @@ module LD31 {
 
                     }
                     else if (key === 'stone') {
-                        this.main.setStoneCount();
+                        this.main.setIncrementStoneCount();
                     }
 
                     temp.kill();
@@ -153,11 +162,11 @@ module LD31 {
 
         }
 
-        youWereHit(){
 
 
 
-        }
+
+
 
 
 

@@ -23,7 +23,7 @@ var LD31;
             this.state.add('Menu', LD31.Menu, false);
             this.state.add('Main', LD31.Main, false);
             this.state.add('GameOver', LD31.GameOver, false);
-            this.state.start('Main');
+            this.state.start('Menu');
         }
         return LudumGame;
     })(Phaser.Game);

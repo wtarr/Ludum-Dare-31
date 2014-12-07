@@ -18,7 +18,7 @@ module LD31 {
             this.state.add('Main', LD31.Main, false);
             this.state.add('GameOver', LD31.GameOver, false);
 
-            this.state.start('Main');
+            this.state.start('Menu');
         }
     }
 }

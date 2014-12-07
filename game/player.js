@@ -39,12 +39,14 @@ var LD31;
             this.arrowGroup.createMultiple(20, 'arrow', 0, false);
             this.arrowGroup.setAll('anchor.x', 0.5);
             this.arrowGroup.setAll('anchor.y', 0.5);
+            this.arrowGroup.setAll('scale.x', 1);
+            this.arrowGroup.setAll('scale.y', 1);
             this.arrowGroup.setAll('outOfBoundsKill', true);
             this.arrowGroup.setAll('checkWorldBounds', true);
         };
         Player.prototype.update = function () {
-            this.game.physics.arcade.collide(this.main.collectableResourcesGroup, this, this.collideWithResourceCallback, null, this);
             this.game.physics.arcade.collide(this.main.snowmanGroup, this.arrowGroup, this.arrowHitSnowman, null, this);
+            this.game.physics.arcade.collide(this.main.collectableResourcesGroup, this, this.collideWithResourceCallback, null, this);
             this.body.velocity.x = 0;
             this.body.velocity.y = 0;
             this.body.angularVelocity = 0;
@@ -67,29 +69,33 @@ var LD31;
                     var arrow = this.arrowGroup.getFirstExists(false);
                     arrow.reset(this.x, this.y);
                     arrow.rotation = this.rotation;
+                    arrow.lifespan = 2000;
                     this.game.physics.arcade.velocityFromRotation(this.rotation, 200, arrow.body.velocity);
                     this.arrowCount--;
                     this.main.updateArrowCount(this.arrowCount);
                 }
             }
         };
+        Player.prototype.render = function () {
+        };
         Player.prototype.collideWithResourceCallback = function (one, other) {
             var _this = this;
             this.playerCanMove = false;
+            this.main.forageAudio.play();
             var key = other.key;
             other.kill();
             var item = other.name.split(":");
             var temp = this.game.add.sprite(parseInt(item[0]), parseInt(item[1]), key);
             //temp.body.immovable = true;
             this.main.itemMap[parseInt(item[2])] = 0;
-            console.log("hit!!");
+            console.log("Collecting resource");
             this.game.add.tween(temp.scale).to({ x: 1.1, y: 1.1 }, 2000, Phaser.Easing.Bounce.InOut, true).onComplete.add(function () {
                 _this.game.add.tween(temp).to({ x: 850, y: 10 }, 500, Phaser.Easing.Cubic.Out, true, 0, 0, false).onComplete.add(function () {
                     if (key === 'tree') {
                         _this.main.setWoodCount();
                     }
                     else if (key === 'stone') {
-                        _this.main.setStoneCount();
+                        _this.main.setIncrementStoneCount();
                     }
                     temp.kill();
                     _this.playerCanMove = true;
@@ -100,8 +106,6 @@ var LD31;
             console.log("arrow hit snowman");
             arrow.kill();
             snowman.kill();
-        };
-        Player.prototype.youWereHit = function () {
         };
         return Player;
     })(Phaser.Sprite);

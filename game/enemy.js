@@ -42,20 +42,15 @@ var LD31;
             this.body.velocity.x = 0;
             this.body.velocity.y = 0;
             this.body.angularVelocity = 0;
-            if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-                this.body.angularVelocity = -200;
-            }
-            else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-                this.body.angularVelocity = 200;
-            }
             if (this.game.physics.arcade.distanceBetween(this, this.playerref) > 100) {
-                this.rotation = this.game.physics.arcade.moveToObject(this, this.playerref, 50);
+                this.rotation = this.game.physics.arcade.moveToObject(this, this.playerref, 30);
             }
             else {
                 if (this.game.time.now > this.nextFire && this.snowballGroup.countDead() > 0 && this.alive) {
                     this.nextFire = this.game.time.now + this.fireRate;
                     var snowball = this.snowballGroup.getFirstExists(false);
                     snowball.reset(this.x, this.y);
+                    snowball.lifespan = 2000;
                     this.game.physics.arcade.moveToObject(snowball, this.playerref, 50);
                 }
             }
@@ -67,7 +62,9 @@ var LD31;
             //    this.frame = 0;
             //}
         };
-        Enemy.prototype.snowBallHitPlayer = function (me, other) {
+        Enemy.prototype.snowBallHitPlayer = function (player, snowball) {
+            snowball.kill();
+            this.main.playerTakeDamage();
             console.log("Player hit by snowball");
         };
         return Enemy;

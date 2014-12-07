@@ -14,10 +14,20 @@ var LD31;
         __extends(Menu, _super);
         function Menu() {
             _super.apply(this, arguments);
+            this.startTriggered = false;
         }
         Menu.prototype.preload = function () {
+            this.game.load.image('start', 'assets/startscreen.png');
         };
         Menu.prototype.create = function () {
+            var _this = this;
+            this.game.add.image(0, 0, 'start');
+            this.game.input.keyboard.onDownCallback = function () {
+                if (!_this.startTriggered) {
+                    _this.startTriggered = true;
+                    _this.game.state.start('Main', true, false);
+                }
+            };
         };
         Menu.prototype.update = function () {
         };

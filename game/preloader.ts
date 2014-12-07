@@ -21,9 +21,9 @@ module LD31 {
             this.game.load.image('arrowpickup', 'assets/arrowpickup.png')
             this.game.load.image('snowball', 'assets/snowball.png');
 
-            this.game.load.audio('forage', 'audio/forage.wav');
-            this.game.load.audio('hit', 'audio/hithurt.wav');
-            this.game.load.audio('theme', 'audio/theme.wav');
+            this.game.load.audio('forage', 'audio/forage.mp3');
+            this.game.load.audio('hit', 'audio/hit.mp3');
+            this.game.load.audio('theme', 'audio/theme.mp3');
 
             this.game.load.image('stone', 'assets/stone.png');
             //this.game.load.image('player', 'assets/player.png');

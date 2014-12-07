@@ -2,23 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23bf2ff2-69ad-4f4d-bdee-9f43cad0ee43" name="Default" comment="">
-      <change type="DELETED" beforePath="F:\Documents\GitHub\Ludum-Dare-31\css\bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="F:\Documents\GitHub\Ludum-Dare-31\css\bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="F:\Documents\GitHub\Ludum-Dare-31\css\bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="F:\Documents\GitHub\Ludum-Dare-31\css\bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="F:\Documents\GitHub\Ludum-Dare-31\css\bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="F:\Documents\GitHub\Ludum-Dare-31\css\bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="F:\Documents\GitHub\Ludum-Dare-31\js\bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="F:\Documents\GitHub\Ludum-Dare-31\js\bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="F:\Documents\GitHub\Ludum-Dare-31\js\npm.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/arrow.psd" afterPath="$PROJECT_DIR$/resources/arrow.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/buttons.psd" afterPath="$PROJECT_DIR$/resources/buttons.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/player.psd" afterPath="$PROJECT_DIR$/resources/player.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/snowball.psd" afterPath="$PROJECT_DIR$/resources/snowball.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/startscreen.psd" afterPath="$PROJECT_DIR$/resources/startscreen.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/main.js.map" afterPath="$PROJECT_DIR$/game/main.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/main.js" afterPath="$PROJECT_DIR$/game/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/main.ts" afterPath="$PROJECT_DIR$/game/main.ts" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/audio/forage.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/audio/hit.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/audio/theme.mp3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/preloader.js.map" afterPath="$PROJECT_DIR$/game/preloader.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/preloader.js" afterPath="$PROJECT_DIR$/game/preloader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/preloader.ts" afterPath="$PROJECT_DIR$/game/preloader.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="LD31.iws" />
@@ -97,10 +86,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/main.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4831081" vertical-offset="887" max-vertical-offset="5712">
+            <state vertical-scroll-proportion="0.0" vertical-offset="887" max-vertical-offset="5712">
               <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
               <folding />
             </state>
@@ -129,11 +118,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="preloader.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="preloader.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/preloader.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
-              <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.45945945" vertical-offset="102" max-vertical-offset="1054">
+              <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
               <folding>
                 <element signature="n#!!doc;n#LD31#0" expanded="false" />
               </folding>
@@ -170,8 +159,8 @@
         <option value="$PROJECT_DIR$/game/game.ts" />
         <option value="$PROJECT_DIR$/game/boot.ts" />
         <option value="$PROJECT_DIR$/game/menu.ts" />
-        <option value="$PROJECT_DIR$/game/preloader.ts" />
         <option value="$PROJECT_DIR$/game/main.ts" />
+        <option value="$PROJECT_DIR$/game/preloader.ts" />
       </list>
     </option>
   </component>
@@ -264,6 +253,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LD31" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ludum-Dare-31" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="audio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -783,16 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/preloader.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
-          <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
-          <folding>
-            <element signature="n#!!doc;n#LD31#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game/menu.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
@@ -805,9 +798,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/main.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4831081" vertical-offset="887" max-vertical-offset="5712">
+        <state vertical-scroll-proportion="0.0" vertical-offset="887" max-vertical-offset="5712">
           <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/preloader.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45945945" vertical-offset="102" max-vertical-offset="1054">
+          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+          <folding>
+            <element signature="n#!!doc;n#LD31#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

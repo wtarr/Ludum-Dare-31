@@ -1,7 +1,7 @@
 /**
  * Created by William on 07/12/2014.
  */
-/// <reference path="../js/phaser.d.ts"/>
+/// <reference path="../lib/phaser.d.ts"/>
 ///<reference path="main.ts"/>
 
 module LD31 {

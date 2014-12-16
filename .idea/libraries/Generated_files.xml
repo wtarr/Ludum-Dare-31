@@ -2,25 +2,29 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/util/priorityq.js" />
+        <item url="file://$PROJECT_DIR$/game/gameover.js" />
+        <item url="file://$PROJECT_DIR$/game/game.js" />
         <item url="file://$PROJECT_DIR$/game/menu.js" />
         <item url="file://$PROJECT_DIR$/game/preloader.js" />
-        <item url="file://$PROJECT_DIR$/game/enemy.js" />
-        <item url="file://$PROJECT_DIR$/game/game.js" />
-        <item url="file://$PROJECT_DIR$/game/main.js" />
+        <item url="file://$PROJECT_DIR$/tests/maintest.js" />
         <item url="file://$PROJECT_DIR$/game/boot.js" />
+        <item url="file://$PROJECT_DIR$/game/enemy.js" />
+        <item url="file://$PROJECT_DIR$/game/main.js" />
         <item url="file://$PROJECT_DIR$/game/player.js" />
-        <item url="file://$PROJECT_DIR$/game/gameover.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/game/menu.js" />
-      <root url="file://$PROJECT_DIR$/game/preloader.js" />
+      <root url="file://$PROJECT_DIR$/game/gameover.js" />
+      <root url="file://$PROJECT_DIR$/util/priorityq.js" />
       <root url="file://$PROJECT_DIR$/game/game.js" />
+      <root url="file://$PROJECT_DIR$/game/menu.js" />
+      <root url="file://$PROJECT_DIR$/tests/maintest.js" />
+      <root url="file://$PROJECT_DIR$/game/preloader.js" />
+      <root url="file://$PROJECT_DIR$/game/boot.js" />
       <root url="file://$PROJECT_DIR$/game/enemy.js" />
       <root url="file://$PROJECT_DIR$/game/main.js" />
       <root url="file://$PROJECT_DIR$/game/player.js" />
-      <root url="file://$PROJECT_DIR$/game/boot.js" />
-      <root url="file://$PROJECT_DIR$/game/gameover.js" />
     </CLASSES>
     <SOURCES />
   </library>

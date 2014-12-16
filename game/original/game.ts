@@ -1,7 +1,7 @@
 /**
  * Created by William on 06/12/2014.
  */
-/// <reference path="../lib/phaser.d.ts"/>
+/// <reference path="../../lib/phaser.d.ts"/>
 /// <reference path="preloader.ts"/>
 /// <reference path="boot.ts"/>
 /// <reference path="menu.ts"/>

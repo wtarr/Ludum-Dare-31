@@ -7,7 +7,7 @@ var __extends = this.__extends || function (d, b) {
 /**
  * Created by William on 06/12/2014.
  */
-/// <reference path="../js/phaser.d.ts"/>
+/// <reference path="../lib/phaser.d.ts"/>
 var LD31;
 (function (LD31) {
     var Boot = (function (_super) {

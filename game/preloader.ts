@@ -1,7 +1,7 @@
 /**
  * Created by William on 06/12/2014.
  */
-/// <reference path="../js/phaser.d.ts"/>
+/// <reference path="../lib/phaser.d.ts"/>
 module LD31 {
     export class Preloader extends Phaser.State {
         game:Phaser.Game;

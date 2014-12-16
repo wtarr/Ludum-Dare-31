@@ -1,7 +1,7 @@
 /**
  * Created by William on 06/12/2014.
  */
-/// <reference path="../lib/phaser.d.ts"/>
+/// <reference path="../../lib/phaser.d.ts"/>
 module LD31 {
     export class Menu extends Phaser.State {
         game:Phaser.Game;

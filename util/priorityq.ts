@@ -10,6 +10,11 @@ module Util {
             this.priority = priority
         }
 
+        equals(other :Node<T>) : boolean
+        {
+            return JSON.stringify(this.data) === JSON.stringify(other.data);
+        }
+
         toString () : string
         {
             return this.priority.toString()
@@ -32,11 +37,8 @@ module Util {
             {
                 var j = 0;
                 while (this.list[j].priority > this.list[i].priority) j++;
-
                 var val = this.list[i]; // node
-
                 for (var k = i; k > j; k--) this.list[k] = this.list[k - 1]; // node
-
                 this.list[j] = val; // node
             }
         }
@@ -44,6 +46,24 @@ module Util {
         pop () : T
         {
             return this.list.pop().data; // should pull the sorted top
+        }
+
+        hasItems() : boolean
+        {
+            return (this.list.length > 0);
+        }
+
+        contains(data:T, compareFunc: any):boolean {
+            var result = false;
+            for (var i = 0; i < this.list.length; i++)
+            {
+                var item = this.list[i];
+                var temp = new Util.Node<T>(data, 1);
+                if (compareFunc(item.data, temp.data) == true) {
+                    result = true;
+                }
+            }
+            return result;
         }
     }
 

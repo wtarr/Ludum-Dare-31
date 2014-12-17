@@ -5,6 +5,9 @@ var Util;
             this.data = data;
             this.priority = priority;
         }
+        Node.prototype.equals = function (other) {
+            return JSON.stringify(this.data) === JSON.stringify(other.data);
+        };
         Node.prototype.toString = function () {
             return this.priority.toString();
         };
@@ -32,6 +35,20 @@ var Util;
         };
         PriorityQueue.prototype.pop = function () {
             return this.list.pop().data; // should pull the sorted top
+        };
+        PriorityQueue.prototype.hasItems = function () {
+            return (this.list.length > 0);
+        };
+        PriorityQueue.prototype.contains = function (data, compareFunc) {
+            var result = false;
+            for (var i = 0; i < this.list.length; i++) {
+                var item = this.list[i];
+                var temp = new Util.Node(data, 1);
+                if (compareFunc(item.data, temp.data) == true) {
+                    result = true;
+                }
+            }
+            return result;
         };
         return PriorityQueue;
     })();

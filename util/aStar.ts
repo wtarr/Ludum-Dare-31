@@ -138,8 +138,8 @@ module PathFinding {
             if (node.x == this.mapColCount - 1 && node.y == this.mapRowCount - 1) {
                 //  #
                 //# o
-                nodes.push(this.get_node(node.x + 1, node.y));
-                nodes.push(this.get_node(node.x + 1, node.y));
+                nodes.push(this.get_node(node.x, node.y - 1));
+                nodes.push(this.get_node(node.x - 1, node.y));
 
                 return nodes;
             }
